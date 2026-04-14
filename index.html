@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helsinki — Nordic City Escape</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --white: #ffffff;
+      --text: #24313d;
+      --muted: #6b7682;
+      --heading: #111927;
+      --line: #e5e7eb;
+      --primary: #2e5f7d;
+      --primary-dark: #21485f;
+      --soft: #edf3f7;
+      --shadow: 0 20px 50px rgba(17, 25, 39, 0.08);
+      --shadow-strong: 0 30px 60px rgba(17, 25, 39, 0.14);
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+      --container: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 7rem 0;
+    }
+
+    .section-label {
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+    }
+
+    .section-label.light {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-heading.center {
+      text-align: center;
+      margin-inline: auto;
+    }
+
+    .section-heading h2,
+    .content-block h2,
+    .editorial-text h2,
+    .cta-panel h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.12;
+      color: var(--heading);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading p,
+    .content-block p,
+    .editorial-text p,
+    .cta-panel p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom right, rgba(10, 18, 28, 0.25), rgba(10, 18, 28, 0.72)),
+        url("https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1800&q=80")
+        center/cover no-repeat;
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 35%),
+        linear-gradient(to top, rgba(10, 18, 28, 0.45), rgba(10, 18, 28, 0.2));
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 2;
+      padding: 1.6rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.7rem;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.92);
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.75;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      min-height: calc(100vh - 88px);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: end;
+      gap: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-text-block {
+      max-width: 720px;
+      padding-top: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    .hero-label {
+      font-size: 0.9rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      line-height: 0.94;
+      margin-bottom: 1.3rem;
+      max-width: 780px;
+    }
+
+    .hero-description {
+      max-width: 640px;
+      font-size: 1.08rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      padding: 0.95rem 1.55rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, border 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--heading);
+    }
+
+    .btn-primary:hover {
+      background: #edf2f6;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-cards {
+      display: grid;
+      gap: 1rem;
+      align-self: end;
+    }
+
+    .glass-card {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.3rem 1.4rem;
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.74);
+      margin-bottom: 0.7rem;
+    }
+
+    .glass-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+
+    .glass-card p {
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 0.95rem;
+    }
+
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.2rem;
+      align-items: center;
+    }
+
+    .image-stack {
+      position: relative;
+      min-height: 620px;
+    }
+
+    .main-image {
+      height: 560px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .floating-image {
+      position: absolute;
+      width: 48%;
+      right: -1rem;
+      bottom: 1rem;
+      height: 240px;
+      border-radius: var(--radius-lg);
+      border: 8px solid var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .content-block p + p {
+      margin-top: 1rem;
+    }
+
+    .mini-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .mini-stat {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-stat strong {
+      display: block;
+      color: var(--heading);
+      margin-bottom: 0.35rem;
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .highlights {
+      background: linear-gradient(to bottom, #f8fbfd, #eef3f7);
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .highlight-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .highlight-image img {
+      height: 280px;
+    }
+
+    .highlight-content {
+      padding: 1.5rem;
+    }
+
+    .place-number {
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.14em;
+    }
+
+    .highlight-content h3 {
+      font-size: 1.35rem;
+      color: var(--heading);
+      margin-bottom: 0.7rem;
+    }
+
+    .highlight-content p {
+      color: var(--muted);
+    }
+
+    .reason-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.3rem;
+    }
+
+    .reason-card {
+      background: var(--white);
+      padding: 1.8rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(46, 95, 125, 0.08);
+    }
+
+    .reason-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      border-radius: 50%;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .reason-card h3 {
+      margin-bottom: 0.7rem;
+      color: var(--heading);
+    }
+
+    .reason-card p {
+      color: var(--muted);
+    }
+
+    .editorial-band {
+      background: #f1f5f8;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .editorial-image img {
+      height: 480px;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .text-link {
+      display: inline-block;
+      margin-top: 1.4rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .text-link:hover {
+      color: var(--primary-dark);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 240px;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      background: #d9e1e7;
+    }
+
+    .gallery-item.large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(17, 25, 39, 0.7), rgba(17, 25, 39, 0.08));
+    }
+
+    .gallery-item figcaption {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 2;
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .cta-panel {
+      padding: 5rem 0;
+    }
+
+    .cta-panel-inner {
+      background:
+        linear-gradient(135deg, rgba(46, 95, 125, 0.96), rgba(87, 134, 165, 0.94)),
+        url("https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=1400&q=80")
+        center/cover no-repeat;
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      box-shadow: var(--shadow-strong);
+    }
+
+    .cta-panel h2 {
+      color: var(--white);
+    }
+
+    .cta-panel p {
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 620px;
+    }
+
+    .footer {
+      background: #0f1720;
+      color: rgba(255, 255, 255, 0.8);
+      padding-top: 4.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .footer p,
+    .footer li + li {
+      margin-top: 0.6rem;
+    }
+
+    .footer a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-content,
+      .split-layout,
+      .editorial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .highlight-grid,
+      .reason-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .image-stack {
+        min-height: auto;
+      }
+
+      .main-image {
+        height: 500px;
+      }
+
+      .floating-image {
+        width: 38%;
+        right: 1rem;
+        bottom: -1rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .section {
+        padding: 5rem 0;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-content {
+        min-height: auto;
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+      }
+
+      .hero-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .mini-stats,
+      .cta-panel-inner,
+      .footer-grid {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-item.large,
+      .gallery-item.wide {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      .floating-image {
+        position: absolute;
+        width: 42%;
+        height: 210px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 0.9rem 1.2rem;
+      }
+
+      .highlight-grid,
+      .reason-grid,
+      .mini-stats,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .main-image {
+        height: 360px;
+      }
+
+      .floating-image {
+        position: relative;
+        width: 100%;
+        right: auto;
+        bottom: auto;
+        margin-top: 1rem;
+        height: 220px;
+        border-width: 0;
+      }
+
+      .image-stack {
+        display: block;
+      }
+
+      .highlight-image img,
+      .editorial-image img {
+        height: 300px;
+      }
+
+      .cta-panel-inner {
+        padding: 2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.6rem, 12vw, 4.3rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-overlay"></div>
+
+    <nav class="navbar container">
+      <a href="#" class="logo">HELSINKI</a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#highlights">Highlights</a></li>
+        <li><a href="#reasons">Why Visit</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero-content container">
+      <div class="hero-text-block">
+        <p class="hero-label">Nordic elegance • coastal calm • modern culture</p>
+        <h1>Experience Helsinki in a more beautiful way</h1>
+        <p class="hero-description">
+          Discover a city where sea views, refined architecture, clean design,
+          and relaxed Nordic lifestyle create a destination that feels both
+          inspiring and peaceful.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#highlights" class="btn btn-primary">Explore Helsinki</a>
+          <a href="#gallery" class="btn btn-secondary">View Gallery</a>
+        </div>
+      </div>
+
+      <div class="hero-cards">
+        <article class="glass-card">
+          <span class="card-tag">Design</span>
+          <h3>Scandinavian style in every corner</h3>
+          <p>Minimal, elegant, functional, and visually calm.</p>
+        </article>
+
+        <article class="glass-card">
+          <span class="card-tag">Seaside</span>
+          <h3>City life next to open water</h3>
+          <p>Harbors, islands, promenades, and northern light.</p>
+        </article>
+
+        <article class="glass-card">
+          <span class="card-tag">Lifestyle</span>
+          <h3>Modern energy with quiet balance</h3>
+          <p>A city that feels creative, fresh, and easy to enjoy.</p>
+        </article>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section about" id="about">
+      <div class="container split-layout">
+        <div class="image-stack">
+          <img
+            class="main-image"
+            src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1200&q=80"
+            alt="Helsinki city landscape"
+          />
+          <img
+            class="floating-image"
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80"
+            alt="Helsinki waterfront"
+          />
+        </div>
+
+        <div class="content-block">
+          <p class="section-label">About Helsinki</p>
+          <h2>A city where architecture, sea, and calm living meet</h2>
+          <p>
+            Helsinki is a destination that feels polished yet relaxed. Its elegant
+            streets, coastal landscapes, design culture, and fresh northern mood
+            make it one of Europe’s most visually distinctive capitals.
+          </p>
+          <p>
+            From iconic landmarks to quiet waterfront walks, the city offers a
+            premium travel experience that is modern, balanced, and full of atmosphere.
+          </p>
+
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <strong>Design</strong>
+              <span>Creative, modern, Nordic</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Sea</strong>
+              <span>Open waterfront views</span>
+            </div>
+            <div class="mini-stat">
+              <strong>Mood</strong>
+              <span>Clean, calm, elegant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section highlights" id="highlights">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="section-label">Highlights</p>
+          <h2>Signature places to discover</h2>
+          <p>
+            A curated selection of Helsinki’s most memorable sights and experiences.
+          </p>
+        </div>
+
+        <div class="highlight-grid">
+          <article class="highlight-card">
+            <div class="highlight-image">
+              <img
+                src="https://images.unsplash.com/photo-1561986619-6d9d6f5b8f0b?auto=format&fit=crop&w=900&q=80"
+                alt="Helsinki Cathedral"
+              />
+            </div>
+            <div class="highlight-content">
+              <span class="place-number">01</span>
+              <h3>Helsinki Cathedral</h3>
+              <p>
+                A timeless white landmark that defines the city skyline with elegance,
+                symmetry, and a grand sense of arrival.
+              </p>
+            </div>
+          </article>
+
+          <article class="highlight-card">
+            <div class="highlight-image">
+              <img
+                src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80"
+                alt="Suomenlinna fortress"
+              />
+            </div>
+            <div class="highlight-content">
+              <span class="place-number">02</span>
+              <h3>Suomenlinna</h3>
+              <p>
+                A historic island fortress where sea air, open views, and old stone
+                paths create one of the city’s most atmospheric escapes.
+              </p>
+            </div>
+          </article>
+
+          <article class="highlight-card">
+            <div class="highlight-image">
+              <img
+                src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80"
+                alt="Market Square Helsinki"
+              />
+            </div>
+            <div class="highlight-content">
+              <span class="place-number">03</span>
+              <h3>Market Square</h3>
+              <p>
+                A lively waterfront setting filled with local flavor, sea views,
+                seasonal stalls, and the everyday rhythm of Helsinki.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reasons" id="reasons">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="section-label">Why Visit</p>
+          <h2>What makes the city unforgettable</h2>
+        </div>
+
+        <div class="reason-grid">
+          <article class="reason-card">
+            <div class="reason-icon">✦</div>
+            <h3>Nordic Design</h3>
+            <p>
+              Beautiful simplicity, smart spaces, and clean visual identity shape
+              the feel of the city.
+            </p>
+          </article>
+
+          <article class="reason-card">
+            <div class="reason-icon">🌊</div>
+            <h3>Seaside Atmosphere</h3>
+            <p>
+              Water is always close, giving Helsinki a fresh, open, and calming energy.
+            </p>
+          </article>
+
+          <article class="reason-card">
+            <div class="reason-icon">☕</div>
+            <h3>Local Food & Cafés</h3>
+            <p>
+              Cozy cafés, markets, and Nordic flavors make daily city moments feel special.
+            </p>
+          </article>
+
+          <article class="reason-card">
+            <div class="reason-icon">❋</div>
+            <h3>Balanced Lifestyle</h3>
+            <p>
+              The city feels modern and active, yet never too rushed or overwhelming.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section editorial-band">
+      <div class="container editorial-grid">
+        <div class="editorial-text">
+          <p class="section-label">City Mood</p>
+          <h2>Minimalist, refined, and quietly impressive</h2>
+          <p>
+            Helsinki does not try too hard to impress — and that is exactly what makes
+            it feel premium. Its elegance lives in the details: soft light, clean streets,
+            calm interiors, and architecture that breathes.
+          </p>
+          <a href="#gallery" class="text-link">See the visual gallery →</a>
+        </div>
+
+        <div class="editorial-image">
+          <img
+            src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1200&q=80"
+            alt="Modern Helsinki neighborhood"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery" id="gallery">
+      <div class="container">
+        <div class="section-heading center">
+          <p class="section-label">Gallery</p>
+          <h2>Visual impressions of Helsinki</h2>
+          <p>
+            A premium-style gallery showcasing city life, architecture, water, and atmosphere.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item large">
+            <img
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1400&q=80"
+              alt="Helsinki street view"
+            />
+            <figcaption>Urban calm</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80"
+              alt="Sea and nature near city"
+            />
+            <figcaption>Sea breeze</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80"
+              alt="People enjoying the city"
+            />
+            <figcaption>Local rhythm</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=900&q=80"
+              alt="Cozy cafe style"
+            />
+            <figcaption>Nordic cafés</figcaption>
+          </figure>
+
+          <figure class="gallery-item wide">
+            <img
+              src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1300&q=80"
+              alt="Open horizon and city atmosphere"
+            />
+            <figcaption>Open northern light</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=900&q=80"
+              alt="Waterfront walk"
+            />
+            <figcaption>Waterfront living</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80"
+              alt="Elegant architecture"
+            />
+            <figcaption>Elegant forms</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80"
+              alt="Fortress and coastal mood"
+            />
+            <figcaption>Historic coast</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-panel">
+      <div class="container cta-panel-inner">
+        <div>
+          <p class="section-label light">Travel inspiration</p>
+          <h2>Make Helsinki your next elegant escape</h2>
+          <p>
+            Discover a city that feels modern, scenic, thoughtful, and deeply refreshing.
+          </p>
+        </div>
+        <a href="#about" class="btn btn-primary">Start Exploring</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h3>Helsinki</h3>
+        <p>
+          A premium city destination shaped by design, sea views, architecture,
+          and calm Nordic living.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#highlights">Highlights</a></li>
+          <li><a href="#reasons">Why Visit</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Social</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Helsinki Landing Page. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
